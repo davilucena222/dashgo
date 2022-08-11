@@ -12,9 +12,20 @@ interface Data {
   users: User[];
 }
 
+interface GetUsersReponse {
+  users: User[];
+  totalCount: number;
+}
+
 //realizando o fetch dos dados dos usuários sem precisar depender do react-query diretamente
-export async function getUser(): Promise<User[]> {
-  const { data } = await api.get<Data>("users");
+export async function getUsers(page: number): Promise<GetUsersReponse> {
+  const { data, headers } = await api.get<Data>("users", {
+    params: {
+      page,
+    }
+  });
+
+  const totalCount = Number(headers["x-total-count"]);
 
   const users = data.users.map((user) => {
     return {
@@ -29,11 +40,14 @@ export async function getUser(): Promise<User[]> {
     };
   });
 
-  return users;
+  return {
+    users,
+    totalCount,
+  };
 }
 
-export function useUsers() {
-  return useQuery(["users"], getUser, {
-    staleTime: 1000 * 5,
+export function useUsers(page: number) {
+  return useQuery(["users", page], () => getUsers(page), {
+    staleTime: 1000 * 60 * 10,
   });
 }

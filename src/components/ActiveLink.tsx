@@ -7,8 +7,8 @@ interface ActiveLinkProps extends LinkProps {
   shouldMatchExactHref?: boolean; //não é obrigado o link ser igual ao href que está no endereço, apenas começar com o endereço do href
 }
 
-export function ActiveLink({ 
-  children, 
+export function ActiveLink({
+  children,
   shouldMatchExactHref = false,
    ...rest }: ActiveLinkProps) {
 
