@@ -4,6 +4,13 @@ import { ErrorMessage } from '@hookform/error-message';
 import { Input } from '../components/Form/Input';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Router from "next/router";
+import { useState } from 'react';
+
+interface SignInProps {
+  email: string;
+  password: string;
+}
 
 const signInFormSchema = yup.object().shape({
   email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
@@ -17,12 +24,10 @@ export default function SignIn() {
     resolver: yupResolver(signInFormSchema),
   });
 
-  console.log(errors);
-
   const handleSignIn: SubmitHandler<FieldValues> = async (values) => {
     await new Promise(resolve => setTimeout(resolve, 2000));
 
-    console.log(values);
+    Router.push("/dashboard");
   }
 
   return (
