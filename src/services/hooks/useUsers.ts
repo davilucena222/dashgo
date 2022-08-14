@@ -19,7 +19,13 @@ interface GetUsersReponse {
 
 //realizando o fetch dos dados dos usuários sem precisar depender do react-query diretamente
 export async function getUsers(page: number): Promise<GetUsersReponse> {
-  const { data, headers } = await api.get<Data>("users", {
+  // const { data, headers } = await api.get<Data>("users", {
+  //   params: {
+  //     page,
+  //   }
+  // });
+
+  const { data, headers } = await api.get("users", {
     params: {
       page,
     }

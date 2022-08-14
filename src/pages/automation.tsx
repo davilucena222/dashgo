@@ -1,13 +1,14 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Flex, Text } from "@chakra-ui/react";
+import { Sidebar } from "../components/Sidebar";
+import { NavLink } from "../components/Sidebar/NavLink";
 
 export default function Automation() {
   return(
-    <Flex>
+    <Flex direction="column" align="center" my="250" gap="2">
       <Text>Desculpe, página em manutenção. Volte para a tela de dashboard!</Text>
-      <Link to="/dashboard">
-        <Button>Tela de Dashboard</Button>
-      </Link>
+      <NavLink href="/dashboard">
+        <a>Tela de Dashboard</a>
+      </NavLink>
     </Flex>
   );
 }

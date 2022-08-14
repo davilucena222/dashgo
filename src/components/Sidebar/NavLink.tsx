@@ -4,7 +4,7 @@ import { RiDashboardLine } from "react-icons/ri";
 import { ActiveLink } from "../ActiveLink";
 
 interface NavLinkProps extends CharkaLinkProps {
-  icon: ElementType;
+  icon?: ElementType;
   children: ReactNode;
   href: string;
 }
